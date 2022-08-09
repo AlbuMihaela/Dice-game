@@ -5,47 +5,56 @@ import java.util.Scanner;
 
 public class JocZaruri {
     public static void main(String[] args) {
-        int zar1;
-        int zar2;
+        int myDice1;
+        int myDice2;
 
-        int zar1Adeversar;
-        int zar2Adeversar;
+        int opponentDice1;
+        int opponentDice2;
 
-        int victoriileMele = 0;
-        int victoriileAdversarului = 0;
+        int myVictories = 0;
+        int myOpponentVictories = 0;
 
-        Random random = new Random();
         Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
         while (true) {
-            System.out.println("Esti pregatit de joc?");
+            System.out.println("Ready to play? Your score " + myVictories + " / Opponnent score " + myOpponentVictories);
             String raspuns = scanner.nextLine();
 
-            if (raspuns.equals("da")) {
-                zar1 = random.nextInt(6) + 1;
-                zar2 = random.nextInt(6) + 1;
-                zar1Adeversar = random.nextInt(6) + 1;
-                zar2Adeversar = random.nextInt(6) + 1;
+            if (raspuns.equals("yes")) {
+                myDice1 = random.nextInt(6) + 1;
+                myDice2 = random.nextInt(6) + 1;
+                opponentDice1 = random.nextInt(6) + 1;
+                opponentDice2 = random.nextInt(6) + 1;
 
-                System.out.println("Ai dat " + +zar1 + " " + zar2);
-                System.out.println("Oponentul a dat:  " + zar1Adeversar + " " + zar2Adeversar);
+                System.out.println("Your dices : " + myDice1 + " " + myDice2);
+                System.out.println("Opponent dices: " + opponentDice1 + " " + opponentDice2);
 
-                int scorulMeu = zar1 + zar2;
-                int scorAdversar = zar1Adeversar + zar2Adeversar;
+                int myScore = myDice1 + myDice2;
+                int opponentScore = opponentDice1 + opponentDice2;
 
-                if (scorulMeu > scorAdversar) {
-                    victoriileMele++;
-                    System.out.println("Ai castigat");
-                } else if (scorAdversar > scorulMeu) {
-                    victoriileAdversarului++;
-                    System.out.println("Ai pierdut");
+                if (myScore > opponentScore) {
+                    myVictories++;
+                    System.out.println("You win!");
+                } else if (opponentScore > myScore) {
+                    myOpponentVictories++;
+                    System.out.println("You lose!");
                 } else {
-                    System.out.println("Este remiza");
+                    System.out.println("Game ended in a tie!");
                 }
-            } else if (raspuns.equals("nu")) {
-                System.out.println("Va mai asteptam pe la noi");
+
+                if (myVictories==6){
+                    System.out.println("You win the game1");
+                    break;
+                }else if (myOpponentVictories==6){
+                    System.out.println("You lost the game!");
+                    break;
+                }
+            } else if (raspuns.equals("no")) {
+                System.out.println("Hope to see you again soon! ");
                 break;
             } else {
-                System.out.println("Nu ai intrdus un raspuns valabil.Introdu da sau nu.");
+                System.out.println("Your answer is not available. Please enter Yes or No .");
             }
         }
     }
